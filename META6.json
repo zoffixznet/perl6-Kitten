@@ -1,0 +1,15 @@
+{
+    "perl"         : "6.c",
+    "name"         : "Kitten",
+    "license"      : "Artistic-2.0",
+    "version"      : "1.001001",
+    "description"  : "Perl 6 Cat, aka lazy strings, except baby-sized",
+    "depends"      : [ ],
+    "test-depends" : [ "Test", "Test::META" ],
+    "provides"     : {
+        "Kitten" : "lib/Kitten.pm6"
+    },
+    "authors"      : [ "Zoffix Znet" ],
+    "source-url"   :
+        "git://github.com/zoffixznet/perl6-Kitten.git"
+}
