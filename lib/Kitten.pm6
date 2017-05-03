@@ -11,7 +11,7 @@ method words(::?CLASS:D: |c) { self!ITEM-SEQ: 'words', |c }
 
 method !ITEM-SEQ (\meth, |args) {
     Seq.new: class :: does Iterator {
-        has Cat     $!cat;
+        has Kitten  $!cat;
         has Str     $!meth;
         has Capture $!args;
         method !SET-SELF ($!cat, $!meth, $!args) { self }
@@ -22,23 +22,23 @@ method !ITEM-SEQ (\meth, |args) {
         method pull-one {
             nqp::while(
               nqp::eqaddr((my $chunk := nqp::getattr(
-                  nqp::decont($!cat), Cat, '$!window'
+                  nqp::decont($!cat), Kitten, '$!window'
                 )."$!meth"(|$!args).iterator.pull-one),
                 IterationEnd)
               && nqp::isfalse(
                 nqp::eqaddr(($_ := nqp::getattr(
-                  nqp::decont($!cat), Cat, '$!iter').pull-one),
+                  nqp::decont($!cat), Kitten, '$!iter').pull-one),
                   IterationEnd)),
-              nqp::bindattr(nqp::decont($!cat), Cat, '$!window',
+              nqp::bindattr(nqp::decont($!cat), Kitten, '$!window',
                 nqp::concat(
-                  nqp::getattr(nqp::decont($!cat), Cat, '$!window'), $_)));
+                  nqp::getattr(nqp::decont($!cat), Kitten, '$!window'), $_)));
             nqp::if(
               nqp::eqaddr($chunk, IterationEnd),
               IterationEnd,
               nqp::stmts(
-                nqp::bindattr(nqp::decont($!cat), Cat, '$!window',
+                nqp::bindattr(nqp::decont($!cat), Kitten, '$!window',
                   nqp::substr(
-                    nqp::getattr(nqp::decont($!cat), Cat, '$!window'),
+                    nqp::getattr(nqp::decont($!cat), Kitten, '$!window'),
                       nqp::chars($chunk))),
                 $chunk))
         }
