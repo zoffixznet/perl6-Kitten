@@ -11,12 +11,12 @@ method words(::?CLASS:D: |c) { self!ITEM-SEQ: 'words', |c }
 
 method !ITEM-SEQ (\meth, |args) {
     Seq.new: class :: does Iterator {
-        has Kitten  $!cat;
+        has Str     $!window;
         has Str     $!meth;
         has Capture $!args;
-        method !SET-SELF ($!cat, $!meth, $!args) { self }
-        method new (\cat, \meth, \args) {
-            nqp::create(self)!SET-SELF: cat, meth, args
+        method !SET-SELF ($!window, $!meth, $!args) { self }
+        method new (\window, \meth, \args) {
+            nqp::create(self)!SET-SELF: window, meth, args
         }
 
         method pull-one {
@@ -42,5 +42,5 @@ method !ITEM-SEQ (\meth, |args) {
                       nqp::chars($chunk))),
                 $chunk))
         }
-    }.new: self, meth, args
+    }.new: $!window, meth, args
 }
